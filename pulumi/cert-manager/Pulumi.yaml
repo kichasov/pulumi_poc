@@ -1,0 +1,23 @@
+name: cert-manager
+description: Install cert-manager
+runtime: yaml
+variables: {}
+resources:
+  certManager:
+    type: kubernetes:helm.sh/v3:Release
+    properties:
+      createNamespace: true
+      name: cert-manager
+      chart: cert-manager
+      namespace: cert-manager
+      repositoryOpts:
+        repo: https://charts.jetstack.io
+      version: "v1.16.3"
+      values:
+        prometheus:
+          enabled: true
+        crds:
+          enabled: true
+outputs:
+  certManagerId: ${certManager.id}
+  certManagerStatus: ${certManager.status}

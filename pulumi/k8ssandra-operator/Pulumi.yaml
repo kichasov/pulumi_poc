@@ -1,0 +1,17 @@
+name: k8ssandra-operator
+description: Install k8ssandra-operator
+runtime: yaml
+config: {'pulumi:tags': {value: {'pulumi:template': yaml}}}
+variables: {}
+resources:
+  cassandraOperator:
+    type: kubernetes:helm.sh/v3:Release
+    properties:
+      createNamespace: true
+      name: k8ssandra-operator
+      chart: k8ssandra-operator
+      namespace: k8ssandra-operator
+      repositoryOpts:
+        repo: https://helm.k8ssandra.io/stable
+      version: "1.21.0"
+outputs: {}
