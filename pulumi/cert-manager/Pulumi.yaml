@@ -18,6 +18,4 @@ resources:
           enabled: true
         crds:
           enabled: true
-outputs:
-  certManagerId: ${certManager.id}
-  certManagerStatus: ${certManager.status}
+outputs: {}

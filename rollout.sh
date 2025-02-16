@@ -19,7 +19,9 @@ cd ../jaeger-java
 pulumi stack init -s dev --non-interactive
 echo Installing jaeger
 pulumi up -y
+echo Creating namespace robot-shop
 kubectl create namespace robot-shop
+echo Installing app
 helm install app viadee/springboot-helm-chart -n robot-shop
 cd ../opentelemetry
 pulumi stack init -s dev --non-interactive

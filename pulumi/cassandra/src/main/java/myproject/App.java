@@ -9,7 +9,7 @@ public class App {
         Pulumi.run(ctx -> {
 
                 var cassandra = new ConfigFile("cassandra", ConfigFileArgs.builder()
-                        .file("/Users/rkichasov/NetCracker/Qubership/Crossplane/poc/pulumi/cassandra/src/main/resources/cassandra-cr.yaml")
+                        .file("crs/cassandra-cr.yaml")
                         .build());
 
         });

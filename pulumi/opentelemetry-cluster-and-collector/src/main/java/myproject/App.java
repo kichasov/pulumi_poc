@@ -19,14 +19,14 @@ public class App {
             var robotShopNamespace = Namespace.get("robot-shop", Output.of("robot-shop"), null);
 
             var otelCollector = new ConfigFile("otel-collector", ConfigFileArgs.builder()
-                    .file("/Users/rkichasov/NetCracker/Qubership/Crossplane/poc/pulumi/opentelemetry-cluster-and-collector/src/main/resources/otel-collector.yaml")
+                    .file("crs/otel-collector-cr.yaml")
                     .build(),
                     ComponentResourceOptions.builder()
                             .dependsOn(Arrays.asList(jaeger, opentelemetry, robotShopNamespace))
                             .build());
 
             var otelInstrumentation = new ConfigFile("otel-instrumentation", ConfigFileArgs.builder()
-                    .file("/Users/rkichasov/NetCracker/Qubership/Crossplane/poc/pulumi/opentelemetry-cluster-and-collector/src/main/resources/otel-instrumentation.yaml")
+                    .file("crs/otel-instrumentation-cr.yaml")
                     .build(),
                     ComponentResourceOptions.builder()
                             .dependsOn(otelCollector)

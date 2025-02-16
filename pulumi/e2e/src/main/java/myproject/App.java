@@ -21,7 +21,6 @@ import java.util.*;
 
 public class App {
 
-
     public static void main(String[] args) {
         Pulumi.run(ctx -> {
 
@@ -55,6 +54,13 @@ public class App {
                     CustomResourceOptions.builder()
                             .dependsOn(certManager)
                             .build());
+
+/*            var cassandra = new ConfigFile("cassandra", ConfigFileArgs.builder()
+                    .file("crs/cassandra-cr.yaml")
+                    .build(),
+                    ComponentResourceOptions.builder()
+                            .dependsOn(cassandraOperator)
+                            .build());*/
 
             var cassandra = new CustomResource("cassandra", CustomResourceArgs.builder()
                     .apiVersion("k8ssandra.io/v1alpha1")
@@ -185,14 +191,14 @@ public class App {
             var robotShopNamespace = Namespace.get("robot-shop", Output.of("robot-shop"), null);
 
             var otelCollector = new ConfigFile("otel-collector", ConfigFileArgs.builder()
-                    .file("crs/otel-collector.yaml")
+                    .file("crs/otel-collector-cr.yaml")
                     .build(),
                     ComponentResourceOptions.builder()
                             .dependsOn(Arrays.asList(jaeger, openTelemetry, robotShopNamespace))
                             .build());
 
             var otelInstrumentation = new ConfigFile("otel-instrumentation", ConfigFileArgs.builder()
-                    .file("crs/otel-instrumentation.yaml")
+                    .file("crs/otel-instrumentation-cr.yaml")
                     .build(),
                     ComponentResourceOptions.builder()
                             .dependsOn(Arrays.asList(jaeger, openTelemetry, robotShopNamespace))

@@ -1,9 +1,0 @@
-target/
-.classpath
-.project
-.settings/
-.idea/
-*.iml
-/_build.bat
-**/.flattened-pom.xml
-.flattened-pom.xml
