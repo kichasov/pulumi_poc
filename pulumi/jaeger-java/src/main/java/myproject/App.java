@@ -60,6 +60,7 @@ public class App {
                             )
                     )
                     )
+                    .timeout(900)
                     .build()
                     , CustomResourceOptions.builder()
                     .dependsOn(cassandraSecret)
